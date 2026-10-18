@@ -508,8 +508,9 @@ def cmd_inspect(ctx: Ctx):
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="paint.py", description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     common = argparse.ArgumentParser(add_help=False)
-    common.add_argument("--workspace", help="workspace dir (else $IRACING_LIVERY_HOME, profile, ~/.iracing-livery)")
-    p.add_argument("--workspace", help=argparse.SUPPRESS)
+    common.add_argument("--workspace", default=argparse.SUPPRESS,
+                        help="workspace dir (else $IRACING_LIVERY_HOME, profile, ~/.iracing-livery)")
+    p.add_argument("--workspace", default=None, help=argparse.SUPPRESS)
     sub0 = p.add_subparsers(dest="cmd", required=True)
 
     class _Sub:

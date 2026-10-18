@@ -19,6 +19,7 @@ ROLES: dict[str, list[str]] = {
     "display": ["bahnschrift.ttf", "segoeuib.ttf", "arialbd.ttf"],   # big wordmarks (variable font, Bold axis)
     "text": ["segoeuib.ttf", "arialbd.ttf"],                          # small text, no variable axes
     "mono": ["consolab.ttf", "cour.ttf"],
+    "jp": ["msgothic.ttc", "YuGothB.ttc", "meiryob.ttc"],             # katakana / kanji (decorative)
     "ui": ["arial.ttf", "segoeui.ttf"],                               # legends / calibration numbers
     "ui_bold": ["arialbd.ttf", "segoeuib.ttf"],
 }

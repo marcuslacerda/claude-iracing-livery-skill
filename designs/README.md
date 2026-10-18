@@ -18,6 +18,9 @@ Regenerate with `uv run scripts/paint.py designs --doc` and paste between the ma
 <!-- generated:start -->
 | Starter | Car | What it does | Parameters (default) |
 |---|---|---|---|
+| `imperial_cup` | porsche9922cup | Sci-fi armour: warm white panels with seams and bolts, gunmetal bumpers, winged gear insignia; variant=rebel is a rusty scrapyard ship (Porsche Cup). | `variant` = "imperial", `code` = "", `text` = "", `seed` = 3 |
+| `neon_noir` | porsche9922cup | Cyberpunk neon noir: wet metallic graphite, binary code rain, magenta/cyan neon, roof terminal, nerd stickers; variant=day turns the neon off (Porsche Cup). | `variant` = "night", `code` = "", `katakana` = ["\u30cd\u30aa\u30f3\u30ce\u30ef\u30fc\u30eb", "\u30b5\u30a4\u30d0\u30fc\u30ec\u30fc\u30b5\u30fc"], `text` = "", `seed` = 5 |
+| `pop_art_colorido` | porsche9922cup | Pop art in the spirit of Romero Britto: organic cells with thick black outlines, smiling heart, sun and fish (Porsche Cup). | `density` = "large", `seed` = 7, `text` = "" |
 | `shark_mouth` | any calibrated | A shark mouth on the front bumper (lips, teeth, dark intakes) over a two-tone body, satin finish with glossy logos. | `nose` = "#bc8ae1", `tail` = "#9511dd", `mouth` = "#0c0a10", `lip` = "#6e0c46", `tooth` = "#f0ece4", `hook_tooth` = "#c81e1e", `teeth` = True, `accent` = "#e8a33d", `text` = "", `text_color` = "#0a0e13", `logo_tint` = "", `logo_height` = 400, `satin` = True |
 | `solid` | any calibrated | One flat body colour, accent on mirrors/wing, the logo on the hood and doors, wordmark on the wing. | `body` = "#1a1a1a", `accent` = "#e8a33d", `text` = "", `text_color` = "#ffffff", `logo_tint` = "", `logo_height` = 300, `satin` = False |
 | `sponsor` | any calibrated | The sponsor pack: big logo on the hood and doors, wordmark on the wing and rear quarters, a sill band with text. | `body` = "#ffffff", `accent` = "#9511dd", `logo_tint` = "", `logo_height` = 400, `text` = "", `text_color` = "#0a0e13", `sill_text` = "", `sill_band` = "#0a0e13", `sill_text_color` = "#ffffff", `satin` = False |
@@ -28,8 +31,6 @@ Regenerate with `uv run scripts/paint.py designs --doc` and paste between the ma
 ## Starter sheets
 
 ### `solid`
-
-<img src="../examples/porsche9922cup/solid.png" width="320" align="right" alt="">
 
 One flat body colour; mirrors, wing and endplates in the accent colour; the logo on the hood and
 (small) below the door handles; the wordmark on the wing.
@@ -42,8 +43,6 @@ One flat body colour; mirrors, wing and endplates in the accent colour; the logo
 <br clear="all">
 
 ### `two_tone`
-
-<img src="../examples/porsche9922cup/two-tone.png" width="320" align="right" alt="">
 
 Two colours easing into each other from the nose (`nose`) to the tail (`tail`); the blend window is
 `blend_start`..`blend_end` as fractions of the car length. Logo on the roof and below the handles,
@@ -58,8 +57,6 @@ wordmark on the wing.
 
 ### `stripes`
 
-<img src="../examples/porsche9922cup/stripes.png" width="320" align="right" alt="">
-
 Three longitudinal stripes (outer / centre / outer) that run the whole side at `height`, dive into
 the front fender (`dive`), climb again over the rear quarter and continue across the rear bumper
 (`wrap_rear`). Each band fades from its nose colour to its tail colour. Satin finish by default.
@@ -73,7 +70,7 @@ the front fender (`dive`), climb again over the rear quarter and continue across
 
 ### `shark_mouth`
 
-<img src="../examples/porsche9922cup/shark-mouth-front.png" width="200" align="right" alt="">
+<img src="../examples/porsche9922cup/shark-mouth/car.png" width="320" align="right" alt="">
 
 A shark mouth on the front bumper: a lens open at the centre and closed near the tyres, lips in
 `lip`, interior `mouth` (the air intakes become the open mouth), teeth in `tooth` with a bigger one
@@ -89,8 +86,6 @@ body (`nose` → `tail`), accent mirrors/wing, satin finish with glossy logos.
 
 ### `sponsor`
 
-<img src="../examples/porsche9922cup/sponsor.png" width="320" align="right" alt="">
-
 The sponsor pack: a big logo on the hood and the doors (big flat shapes survive the door-handle
 recess), the wordmark on the wing and the rear quarters, and an optional sill band with text
 (`sill_text`, kept between the wheels, clear of the louvers).
@@ -99,6 +94,62 @@ recess), the wordmark on the wing and the rear quarters, and an optional sill ba
 - Try: `--set sill_text="POWERED BY COFFEE"` · `--set body=#0a0e13 logo_tint=#ffffff text_color=#ffffff`.
 - Variations: flags row on the front bumper (`flags.row` in a copied design); a world map or a plate behind the logo (`plate.with_plate`).
 - Limits: sill text at 19 px is the minimum readable size; the sim draws the number over the front-lower door.
+
+<br clear="all">
+
+### `pop_art_colorido` (Porsche Cup)
+
+<img src="../examples/porsche9922cup/pop-art-colorido/car.png" width="320" align="right" alt="">
+
+Pop art in the spirit of Romero Britto (original art): the whole car cut into organic cells (a warped
+Voronoi) with thick black outlines, also along every panel seam; each cell a flat saturated colour or a
+pattern (stripes, dots, checks, zigzag, waves), never the same as its neighbours. Signature pieces: a
+smiling heart on a white balloon in the free part of the hood (tip in the gap between the vents) with a
+wordmark band, a segmented sun on the roof, a segmented fish on a white bubble behind each door, a smile
+with straight rounded teeth on the front bumper, a pink dotted wing with the logo plate, yellow dotted
+mirrors/endplates and a clean white circle under the sim's number. Glossy lacquer (roughness 25).
+
+- Example: [`examples/porsche9922cup/pop-art-colorido/`](../examples/porsche9922cup/pop-art-colorido/prompt.md).
+- Try: `--set density=small` (smaller, more chaotic cells) · `--set seed=11` (another cell draw).
+- Limits: Porsche Cup coordinates (hood vents, door, number circle); `[mouth]` for the smile.
+
+<br clear="all">
+
+### `imperial_cup` (Porsche Cup)
+
+<img src="../examples/porsche9922cup/imperial-cup/car.png" width="320" align="right" alt="">
+
+An empire's racing team in an alternate universe (original insignia, no official logos): warm armour
+white with thin panel seams, bolts, vents and stencils; gunmetal lower bumpers and sills with dust and
+soot; a thin red belt-line stripe; a winged hex-gear insignia on the hood; a hull-panel grid on the roof
+with `<code> // <WORDMARK>`; the wordmark in an invented geometric alphabet (A-Z, 0-9) on the rear
+quarters; kill marks under the window; black wing with "VELOCITAS IMPERIUM"; red mirrors/endplates.
+`variant=rebel` turns it into a scrapyard ship: dirty off-white, orange stripes, patched panels, rust,
+burn marks, a cracked orange insignia, matte overall.
+
+- Examples: [`imperial-cup`](../examples/porsche9922cup/imperial-cup/prompt.md) ·
+  [`rebel-scrapyard`](../examples/porsche9922cup/rebel-scrapyard/prompt.md).
+- Try: `--set variant=rebel` · `--set code=XR-77` (unit code on the roof and the quarter).
+- Limits: Porsche Cup coordinates (door seams, quarter, under-window band).
+
+<br clear="all">
+
+### `neon_noir` (Porsche Cup)
+
+<img src="../examples/porsche9922cup/neon-noir-2049/car.png" width="320" align="right" alt="">
+
+Rainy neon-noir cyberpunk (original art): wet, slightly metallic graphite easing into deep purple; binary
+code rain down the sides (the ASCII bits of `code`, default the wordmark), denser from the door back and
+clear of the number; magenta neon on the belt line and around the hood, cyan on the front bumper and the
+wing; the logo + wordmark as a neon sign on the hood with two katakana columns, a printed circuit and a
+geometric eye between the vents; a roof terminal with a fake telemetry log; worn nerd stickers under the
+number; barcode + QR + "REPLICANT UNIT // CUP-992.2" on the rear bumper; an LED-display windshield banner;
+rain drops, streaks and scanlines. Body metallic 120 / roughness 40 (uses `Paint.metallic`).
+
+- Example: [`examples/porsche9922cup/neon-noir-2049/`](../examples/porsche9922cup/neon-noir-2049/prompt.md).
+- Try: `--set variant=day` (concrete body, neon off) · `--set "code=24 10.08.2026"` (car number + first win) ·
+  `--set 'katakana=["ネオンノワール", "サイバーレーサー"]'`.
+- Limits: Porsche Cup coordinates; the katakana needs a Japanese system font (MS Gothic / Yu Gothic / Meiryo).
 
 <br clear="all">
 
@@ -114,7 +165,7 @@ recess), the wordmark on the wing and the rear quarters, and an optional sill ba
 | `stripes.smooth_path(knots)` / `trio(path, colors, widths, offsets)` / `longitudinal(rig, canvas, bands, fade)` | stripes on both sides | `[sides]` | stripes |
 | `stripes.rear_bumper_wrap(rig, canvas, bands, h_end=0.22, ...)` | continue across the rear bumper | `[bumper_rear]` | stripes |
 | `shark_mouth.draw(rig, paint, dark, lip, tooth, hook_tooth, wall_body, teeth)` | the mouth + intake walls | `[mouth]` (+ `[mouth.walls]`) | shark_mouth |
-| `lockup.horizontal(mark, text, height, ...)` / `stacked(...)` | logo + wordmark sprite | – | – |
+| `lockup.horizontal(mark, text, height, ...)` / `stacked(...)` | logo + wordmark sprite | – | pop_art_colorido, neon_noir |
 | `plate.rounded_plate(size, radius, color)` / `with_plate(sprite, pad, radius, color)` / `framed` | plates behind sprites | – | – |
 | `flags.draw_flag(code, w, h)` / `row(codes)` | simplified flags (BR MX CO US AR DE IT FR GB ES PT NL JP) | – | – |
 

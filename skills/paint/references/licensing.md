@@ -14,7 +14,7 @@
   or with permission, not for an unauthorised "sponsor" look shared publicly. iRacing's sporting
   code and Trading Paints' terms forbid offensive content and unauthorised marks. Never add a
   third-party logo to the plugin's public designs or examples.
-- **Fonts**: the engine uses Windows system fonts in place (Bahnschrift, Segoe UI, Arial, Consolas)
+- **Fonts**: the engine uses Windows system fonts in place (Bahnschrift, Segoe UI, Arial, Consolas, MS Gothic)
   and never copies them. Custom fonts go in `<workspace>/fonts/`, under the font's own licence.
 - **The TGAs rendered belong to the user**; what they upload to Trading Paints is governed by Trading
   Paints' terms.

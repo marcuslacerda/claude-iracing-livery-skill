@@ -66,6 +66,7 @@ class Paint:
     canvas: Image.Image
     matte: np.ndarray                       # float HxW: where logos were placed (gets `logo_roughness`)
     roughness: tuple | None = None          # (float mask, float HxW roughness values) for the body
+    metallic: tuple | None = None           # (float mask, float HxW metallic values) for the body (default: template's)
     logo_roughness: float = 200.0           # G value under the logo mask (33 = glossy, 200 = matte)
     notes: list[str] = field(default_factory=list)
 
@@ -341,7 +342,8 @@ class Rig:
         files = {"paint": out / f"car_{cid}.tga", "spec": out / f"car_spec_{cid}.tga",
                  "png": out / "car.png", "wire": out / "preview_wire.png"}
         save_tga(rgb, files["paint"])
-        spec = spec_map(self.T, roughness_override=(paint.matte, paint.logo_roughness), roughness_map=paint.roughness)
+        spec = spec_map(self.T, roughness_override=(paint.matte, paint.logo_roughness), roughness_map=paint.roughness,
+                        metallic_map=paint.metallic)
         save_tga(spec, files["spec"], alpha=True)
         rgb.save(files["png"])
         self.T.wire_overlay(rgb).save(files["wire"])

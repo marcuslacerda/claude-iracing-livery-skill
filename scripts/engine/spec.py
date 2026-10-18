@@ -11,16 +11,17 @@ from PIL import Image
 from .template import Template
 
 
-def spec_map(T: Template, roughness_override=None, roughness_map=None) -> Image.Image:
+def spec_map(T: Template, roughness_override=None, roughness_map=None, metallic_map=None) -> Image.Image:
     """roughness_override: (float mask 0..1, value) blended into G last (the logo/matte mask).
-    roughness_map: (float mask 0..1, float HxW of G values) blended before the Parts layer is applied."""
+    roughness_map / metallic_map: (float mask 0..1, float HxW of G / R values) blended before the Parts
+    layer is applied, so mechanical parts keep the template's own material."""
     info = {}
 
-    def chan(base_role, parts_role, is_g=False):
+    def chan(base_role, parts_role, design_map=None):
         base = np.array(T.layer(base_role)).astype(np.float32)
         out = base[..., 0].copy()
-        if is_g and roughness_map is not None:
-            m, vals = roughness_map
+        if design_map is not None:
+            m, vals = design_map
             out = vals * m + out * (1 - m)
         if T.has(parts_role):
             parts = np.array(T.layer(parts_role)).astype(np.float32)
@@ -28,8 +29,8 @@ def spec_map(T: Template, roughness_override=None, roughness_map=None) -> Image.
             out = parts[..., 0] * a + out * (1 - a)
         return out
 
-    r = chan("spec_r_base", "spec_r_parts")
-    g = chan("spec_g_base", "spec_g_parts", is_g=True)
+    r = chan("spec_r_base", "spec_r_parts", metallic_map)
+    g = chan("spec_g_base", "spec_g_parts", roughness_map)
     b = chan("spec_b_base", "spec_b_parts")
     if T.has("spec_alpha"):
         a = np.array(T.layer("spec_alpha")).astype(np.float32)[..., 0]

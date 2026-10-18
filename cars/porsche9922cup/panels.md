@@ -24,16 +24,16 @@ roof line at y≈1149) and the left side downward (island 3, upright: sill at y�
 | 5 | **Rear wing** | 1274,12 – 1997,265 | ✅ sim | Lower half (y 150–259) = top face; `rotate=0` reads from behind. Sponsor block x 1300–1980, y 150–250. Swan-neck mounts sit on the top face at x≈1435–1475 and 1795–1835: art only in the three free zones. |
 | 35 / 38 | Wing endplates, outer faces (L / R) | 101,612 – 262,696 / 101,348 – 262,432 | ✅ sim | They sit at x≈180 in the UV (the "nose" zone of a gradient): paint explicitly in the tail colour. |
 | 36 / 37 | Wing endplates, inner faces (L / R) | 1843,344 – 2003,428 / 1027,344 – 1188,428 | ✅ sim | Same: tail colour. |
-| 22 / 23 | Wing mounts (swan neck) | 1704,1802 – 2002,2035 / 1606,1766 – 1905,1996 | ⚠️ | Render black (carbon) in the sim; paint irrelevant. |
+| 22 / 23 | Wing mounts (swan neck) | 1704,1802 – 2002,2035 / 1606,1766 – 1905,1996 | ✅ sim | Render black (carbon) whatever is painted: pop-britto filled them with colourful cells and they stayed black (2026-10-18). Paint irrelevant. |
 | 8 | **Engine lid** | 1717,1070 – 1969,1601 | ✅ sim | Panel under the rear window, with the two grilles. |
 | 32 | Engine lid, lower centre | 1678,1132 – 1718,1539 | ✅ sim | Strip between the grilles, just above the light bar. |
 | 7 | **Front bumper, lower part** | 9,799 – 194,1871 | ✅ sim | Full width; the hole = tow hook. Inverted vertical axis: SMALLER x = LOWER on the car. x 128–164 = full-width band above the intakes; below it the island splits into corners (y 832–1015 / 1655–1839) and the centre section (y 1149–1522). |
 | 20 / 21 | Front bumper lower corners (R / L) | 227,636 – 409,760 / 227,1911 – 409,2035 | ✅ sim | Side walls of the low air intakes. 21 reads upright; 20 is a VERTICAL flip of 21 (3 rounds to find). |
 | 6 | **Rear bumper** | 10,22 – 1253,257 | ✅ sim | Includes the strip with "PORSCHE" under the light bar. x = car width, y = height (top edge y≈46 ≈ side h 0.40). |
-| 17 | Rear panel ("Cup") | 231,10 – 1032,47 | ⚠️ | "Cup" badge in the official pattern; not distinguishable in the screenshots. |
-| 16 | Rear edge of the lid | 1969,1001 – 2040,1669 | ⚠️ | Not visible in the screenshots. |
+| 17 | Rear panel ("Cup") | 231,10 – 1032,47 | ✅ PSD | The official `car_pattern_002` runs its centre stripe across it on the rear bumper's axis (x≈631.5): it continues the rear bumper. Painted with the bumper in every paint of 2026-10-18; never isolated on camera. |
+| 16 | Rear edge of the lid | 1969,1001 – 2040,1669 | ✅ PSD | `car_pattern_002` continues the lid's centre stripe across it (axis y≈1335.5): paint it like the engine lid. Never isolated on camera. |
 | 11 | Rear window | 297,186 – 966,434 | ⚠️ | Glass, not paintable. |
-| 10, 31, 33, 34 | Diffuser / rear lower | 137,438 – 1126,635 and strips above | ⚠️ | Carbon in the sim, not visible. |
+| 10, 31, 33, 34 | Diffuser / rear lower | 137,438 – 1126,635 and strips above | ✅ sim | Render as carbon whatever is painted: colourful cells (pop-britto) and gunmetal/rust (rebel-scrapyard) did not show (2026-10-18). |
 | 18 | Porsche crest | 1847,1585 – 1987,1768 | ✅ | The crest's own island (iRacing decal on top). |
 | 29 / 30 | Mirrors, outer shell (L / R) | 1472,1808 – 1583,2030 / 1472,641 – 1583,863 | ✅ sim | Seen from the front: 29 left, 30 right. |
 | 40 / 39 | Mirrors, inner/front face (L / R) | 120,269 – 326,330 / 937,269 – 1143,330 | ✅ sim | Seen from behind/side. Paint like the mirrors. |
@@ -80,3 +80,39 @@ its own colour + number, legend in `legend.png`). That round confirmed the "✅ 
 - Islands 26/27 (fender louver panel) sit in the UV almost where they are inside the side (same orientation
   and scale) with a small offset: side art crossing them is also clipped onto them, shifted by
   `louver_offset` (tuned from the screenshot; +16 made it worse, 0 kept).
+
+## Validated in the sim (2026-10-18)
+
+Paints: pop-britto, imperial-cup, rebel-scrapyard, neon-noir-2049, lacerdapex-gt-stripes (centred, left
+offset, gradient). Screenshots from the Paint Shop and a test session. The new zones are in car.toml.
+
+- **Centre stripes line up across every top island** when drawn on the axis of the official
+  `car_pattern_002` (same texel scale everywhere, the official stripe is 180 px wide): y=1335.5 on hood,
+  banner, roof, lid and lower front bumper (car LEFT = +y); x=631.5 on the rear bumper and island 17,
+  x=1634.5 on the wing (car LEFT = -x). Centred and 28 cm left-offset stripes both stayed continuous and on
+  the left side. `[stripe_axes]` in car.toml. ✅
+- **The number** ("24", Paint Shop default size) fits a circle centred at (842, h 0.415), r=104 px:
+  x 738–946, h 0.21–0.62 on both sides (a white circle drawn there framed it with some margin; the digits
+  themselves span roughly h 0.28–0.55). Clear of the digits:
+  h 0.56–0.63 above (5 kill marks at x 785–1000) and h 0.07–0.23 below (two rows of stickers at
+  x 742–1060). Zones `number` (keep-out), `under_window`, `door_front_low`. ✅
+- **Hood free area:** x≈505–690 between the vents and the windshield arc, full width. The two vents are
+  their own islands (holes on the car) at x 405–505, y 1185–1290 / 1380–1485; the gap between them
+  (y 1290–1380) takes the tip of a heart or a small emblem. ✅
+- **Behind the number:** x≈985–1365, h 0.2–0.7 takes large art (a 406 px fish on a bubble). The quarter
+  intake is a hole at x 1345–1440, h 0.38–0.56. Zone `door_rear`. ✅
+- **Front fender:** the side island only reaches h≈0.55 at x 300–450 (above it is another island);
+  stickers placed there were cut. ✅
+- **Belt line:** h 0.64–0.655 sits right under the side window on both sides (thin red stripe, magenta
+  neon). ✅
+- **Windshield banner (12):** usable y 1095–1575 at x 955; text with `rotate -90` reads from the front;
+  with centred stripes, a wordmark fits on each side (`banner_right` / `banner_left`). ✅
+- **Rear bumper (6):** upright, reads from behind, small x = car LEFT; text at (631, 92) under the light
+  bar is visible (`rear_bumper_centre`). ✅
+- **Rear quarter:** text at (1556, h 0.555) is visible (the existing `quarters` zone). ✅
+- **Right side orientation:** text needs `rotate 180`; a shape that must point forward (a fish) needs a
+  VERTICAL flip instead (180 would turn it backwards). ✅
+- **Mirrors:** the `mirrors` group (29, 30, 39, 40) recoloured the whole mirror in every paint; endplates
+  35–38 follow the same colour. ✅
+- **Spec:** metallic 120 + roughness 40 reads as wet metal; neon/code at roughness ~4, metallic 0; matte
+  stickers 180. The Parts layer still wins on mechanical parts. ✅

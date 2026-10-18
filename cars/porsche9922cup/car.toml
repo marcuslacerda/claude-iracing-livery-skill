@@ -108,12 +108,41 @@ wing_right   = { centre = [1918, 206],  rotate = 0,   max = [141, 92],  note = "
 quarter_r    = { centre = [1556, 920],  rotate = 180, max = [260, 60],  car_down_y = -1, note = "rear quarter sponsor block 1454-1658 x 896-944" }
 quarter_l    = { centre = [1556, 1752], rotate = 0,   max = [260, 60],  car_down_y = 1 }
 front_bumper = { centre = [100, 1335],  rotate = -90, max = [400, 120], note = "island 7 central face above the intakes (x 128-164 band); smaller x = lower on the car" }
+# Added 2026-10-18 (sim-checked with the pop-britto, imperial-cup, neon-noir-2049 and gt-stripes paints).
+# Side zones: R y = 633 + 516*h, L y = 2038 - 516*h.
+banner_right = { centre = [933, 1200], rotate = -90, max = [170, 32], note = "windshield banner (island 12), car-right half; usable y 1095-1575 at x 955; reads from the front" }
+banner_left  = { centre = [933, 1471], rotate = -90, max = [170, 32], note = "windshield banner, car-left half" }
+number_r     = { centre = [842, 847],  rotate = 180, max = [208, 208], car_down_y = -1, note = "KEEP-OUT: the sim's number fits a circle r=104 here (x 738-946, h 0.21-0.62)" }
+number_l     = { centre = [842, 1824], rotate = 0,   max = [208, 208], car_down_y = 1 }
+under_window_r = { centre = [890, 940],  rotate = 180, max = [250, 44], car_down_y = -1, note = "ahead of the door, under the side window, above the digits (h 0.56-0.63; touches the generous number circle, not the digits): kill marks, small rows" }
+under_window_l = { centre = [890, 1731], rotate = 0,   max = [250, 44], car_down_y = 1 }
+door_front_low_r = { centre = [900, 710],  rotate = 180, max = [320, 80], car_down_y = -1, note = "front-lower door UNDER the number (x 742-1060, h 0.07-0.23): stickers" }
+door_front_low_l = { centre = [900, 1961], rotate = 0,   max = [320, 80], car_down_y = 1 }
+door_rear_r  = { centre = [1175, 839],  rotate = 180, max = [400, 260], car_down_y = -1, note = "big area behind the number (x 985-1365, h 0.2-0.7): large art; shapes that must face forward need a VERTICAL flip on R, not 180" }
+door_rear_l  = { centre = [1175, 1832], rotate = 0,   max = [400, 260], car_down_y = 1 }
+rear_bumper_centre = { centre = [631, 92], rotate = 0, max = [420, 60], note = "island 6 under the light bar, upright, reads from behind (small x = car LEFT)" }
 
 [pairs]
 doors     = ["door_r", "door_l"]
 doors_low = ["door_low_r", "door_low_l"]
 quarters  = ["quarter_r", "quarter_l"]
+number    = ["number_r", "number_l"]
+under_window = ["under_window_r", "under_window_l"]
+door_front_low = ["door_front_low_r", "door_front_low_l"]
+door_rear = ["door_rear_r", "door_rear_l"]
+banner    = ["banner_right", "banner_left"]
 wing_ends = ["wing_left", "wing_right"]
+
+# Axis of the official car_pattern_002 centre stripe (green 180 px + blue pinstripes) on every top island:
+# one texel scale for hood/banner/roof/lid/bumpers/wing, so stripes drawn on these axes line up across
+# the seams (sim-checked 2026-10-18 with centred and left-offset stripes). LEFT of the car = +y on the
+# top band and the front bumper, -x on the rear bumper (incl. island 17) and the wing.
+[stripe_axes]
+centre_y = 1335.5         # hood 4, banner 12, roof 1, lid 32/8, lid edge 16, lower front bumper 7
+rear_x = 631.5            # rear bumper 6 + "Cup" panel 17
+wing_x = 1634.5           # wing 5
+pattern_width = 180       # px of the official stripe (same on every island above)
+left = "+y top band / front bumper, -x rear bumper / wing"
 
 [preview_crops]
 hood       = [480, 1040, 760, 1640]

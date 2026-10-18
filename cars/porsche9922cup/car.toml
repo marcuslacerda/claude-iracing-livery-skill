@@ -1,0 +1,181 @@
+# Porsche 911 GT3 Cup (992.2) — sim-verified calibration (see panels.md for the evidence per island).
+#
+# Coordinate conventions (2048x2048 template, origin top-left):
+#   * car length runs along x: nose at x~200, tail at x~1950 (hood/roof/deck band and both sides)
+#   * right side = island 2, drawn UPSIDE DOWN (sill y=633, belt/roof line y~1149)  -> car_down_y = -1
+#   * left side  = island 3, upright          (sill y=2038, belt/roof line y~1522)  -> car_down_y = +1
+#   * centre band (hood 4, banner 12, roof 1, engine lid 8): car right at small y, left at large y, centreline y~1335
+
+[car]
+slug = "porsche9922cup"
+car_path = "porsche9922cup"          # folder name under Documents/iRacing/paint/
+car_id = 208
+name = "Porsche 911 GT3 Cup (992.2)"
+template_psd = "Porsche 992_2 Cup.psd"
+min_island_area = 6000
+size = 2048
+status = "calibrated"
+
+[axes]
+length = [200, 1950]
+centre_y = 1335
+
+# name -> island number (as in islands_map.png / panels.md) + a seed pixel inside it.
+# The rig checks that every seed still lands on its number: if iRacing changes the template, re-run
+# `prepare` and fix the numbers here.
+[islands]
+roof             = { id = 1,  seed = [1163, 1335], clip = [964, 1085, 1430, 1587] }   # island 1 is the catch-all: clip to the roof box
+side_r           = { id = 2,  seed = [1067, 895] }
+side_l           = { id = 3,  seed = [1066, 1775] }
+hood             = { id = 4,  seed = [493, 1335] }
+wing             = { id = 5,  seed = [1635, 138] }
+bumper_rear      = { id = 6,  seed = [173, 124] }
+bumper_front_low = { id = 7,  seed = [113, 1335] }
+engine_lid       = { id = 8,  seed = [1844, 1335] }
+windshield       = { id = 9,  seed = [1267, 438] }
+diffuser         = { id = 10, seed = [322, 585] }
+rear_window      = { id = 11, seed = [810, 234] }
+banner           = { id = 12, seed = [932, 1335] }
+cup_panel        = { id = 17, seed = [631, 28] }
+crest            = { id = 18, seed = [1916, 1667] }
+corner_r20       = { id = 20, seed = [327, 695] }
+corner_l21       = { id = 21, seed = [327, 1975] }
+plates25         = { id = 25, seed = [1492, 1429] }
+louver_l         = { id = 26, seed = [646, 1741] }
+louver_r         = { id = 27, seed = [646, 928] }
+mirror_l29       = { id = 29, seed = [1528, 1904] }
+mirror_r30       = { id = 30, seed = [1528, 765] }
+diff31           = { id = 31, seed = [520, 393] }
+lid_centre32     = { id = 32, seed = [1698, 1335] }
+diff33           = { id = 33, seed = [631, 503] }
+diff34           = { id = 34, seed = [561, 419] }
+endplate_l35     = { id = 35, seed = [177, 650] }
+endplate_l36     = { id = 36, seed = [1926, 382] }
+endplate_r37     = { id = 37, seed = [1103, 382] }
+endplate_r38     = { id = 38, seed = [184, 386] }
+mirror_in_r39    = { id = 39, seed = [1042, 297] }
+mirror_in_l40    = { id = 40, seed = [220, 297] }
+intake_r41       = { id = 41, seed = [1182, 1037] }
+intake_l42       = { id = 42, seed = [1184, 1631] }
+
+[groups]
+tail = ["bumper_rear", "cup_panel", "diffuser", "rear_window", "diff31", "diff33", "diff34",
+        "endplate_l35", "endplate_r38", "endplate_l36", "endplate_r37"]
+mirrors = ["mirror_r30", "mirror_l29", "mirror_in_r39", "mirror_in_l40"]
+wing_all = ["wing", "endplate_l35", "endplate_r38", "endplate_l36", "endplate_r37"]
+accent = ["mirror_r30", "mirror_l29", "mirror_in_r39", "mirror_in_l40",
+          "wing", "endplate_l35", "endplate_r38", "endplate_l36", "endplate_r37"]
+
+# Islands whose UV position lies about where they are on the car: copy the base colour sampled at `sample` (x, y).
+[[fixups]]
+targets = "tail"            # tail parts sit in the "nose" zone of the UV -> tail colour
+sample = [1900, 1335]
+[[fixups]]
+targets = ["plates25"]      # small plates near the headlights (and engine lid) -> hood colour
+sample = [600, 1200]
+[[fixups]]
+targets = "mirrors"         # mirrors -> door colour
+sample = [950, 1800]
+
+[sides]
+x_range = [190, 1840]
+louver_offset = [0, 0]      # (x, car-down) shift for art landing on the louver islands; +16 made it worse in the sim
+[sides.R]
+island = "side_r"
+sill = 633
+belt = 1149
+louver = "louver_r"
+car_down_y = -1
+[sides.L]
+island = "side_l"
+sill = 2038
+belt = 1522
+louver = "louver_l"
+car_down_y = 1
+
+# Where sprites go. centre = template px; rotate = degrees CCW so the art reads correctly on the car;
+# max = fit box (w, h) in px; car_down_y = sign of "down on the car" for dy shifts.
+[zones]
+hood         = { centre = [598, 1336],  rotate = -90, max = [430, 140], note = "between the vents and the windshield; reads from the front" }
+roof         = { centre = [1200, 1335], rotate = -90, max = [440, 460], note = "roof island ~x 964-1430, y 1085-1587; reads from the front like the hood" }
+door_r       = { centre = [1115, 862],  rotate = 180, max = [340, 150], car_down_y = -1, note = "big flat marks only: crosses the door-handle recess (x~1150-1270)" }
+door_l       = { centre = [1115, 1809], rotate = 0,   max = [340, 150], car_down_y = 1 }
+door_low_r   = { centre = [1160, 788],  rotate = 180, max = [280, 110], car_down_y = -1, note = "below the handle line, behind the number: safe for detailed logos/text" }
+door_low_l   = { centre = [1160, 1883], rotate = 0,   max = [280, 110], car_down_y = 1 }
+wing_centre  = { centre = [1635, 206],  rotate = 0,   max = [284, 92],  note = "top face between the swan-neck mounts (x 1485-1785); reads from behind" }
+wing_left    = { centre = [1352, 206],  rotate = 0,   max = [140, 92],  note = "outer end, x 1274-1430" }
+wing_right   = { centre = [1918, 206],  rotate = 0,   max = [141, 92],  note = "outer end, x 1840-1997" }
+quarter_r    = { centre = [1556, 920],  rotate = 180, max = [260, 60],  car_down_y = -1, note = "rear quarter sponsor block 1454-1658 x 896-944" }
+quarter_l    = { centre = [1556, 1752], rotate = 0,   max = [260, 60],  car_down_y = 1 }
+front_bumper = { centre = [100, 1335],  rotate = -90, max = [400, 120], note = "island 7 central face above the intakes (x 128-164 band); smaller x = lower on the car" }
+
+[pairs]
+doors     = ["door_r", "door_l"]
+doors_low = ["door_low_r", "door_low_l"]
+quarters  = ["quarter_r", "quarter_l"]
+wing_ends = ["wing_left", "wing_right"]
+
+[preview_crops]
+hood       = [480, 1040, 760, 1640]
+door_right = [900, 720, 1320, 1000]
+door_left  = [900, 1680, 1320, 1950]
+wing       = [1270, 0, 2000, 270]
+side_left  = [190, 1500, 1840, 2040]
+roof       = [940, 1060, 1450, 1610]
+front      = [0, 780, 420, 1880]
+
+# Rear bumper (island 6): x = car width 10..1253, y = height; top edge y~46 right under the light bar
+# (~ side h 0.40), bottom ~y 178 ~ sill. Used by elements.stripes.rear_bumper_wrap.
+[bumper_rear]
+island = "bumper_rear"
+x_range = [10, 1253]
+h_top = 0.40
+y_top = 46.0
+px_per_h = 330.0
+side_px_per_h = 516.0
+canvas = [1300, 300]
+
+# Shark mouth on the front bumper (island 7). Sim-verified orientation: SMALLER x = LOWER on the car.
+# x 128-164 = full-width band above the intakes; x < 128 = lower part split in three (outer corners
+# y 832-1015 / 1655-1839 and the centre section y 1149-1522 with the tow hook).
+[mouth]
+island = "bumper_front_low"
+region = [0, 780, 200, 1880]
+centre_y = 1335
+half = 505
+x_meet = 72            # where the lips meet near the tyres (y ~840 / ~1830)
+x_lip = 158            # upper lip x across the hood width (headlight level)
+flat_half = 181        # straight upper lip over the hood, then a sine drop
+drop_exp = 1.1
+floor = [48, 22]       # lower lip: centre mesh ends at x~50, corners ~26
+floor_ease = [0.30, 0.35]
+rise_ease = [0.62, 0.38]
+lip_width = [14, 10]
+hook_y = 1202          # tow-hook hole: one bigger (red) tooth there
+pitch = 46
+teeth_margin = [30, 20]
+intake_y = [1100, 1570] # centre = air intake: no lower teeth
+seed = 24
+# Intake walls (islands 20/21, separate UV, bbox 227-409 x 636-760 / 1911-2035). 21 (car left) reads
+# upright; 20 (car right) is a VERTICAL flip of 21 (180 kept the teeth up but the lip sloped the wrong
+# way; a horizontal flip put it upside down - 3 rounds in the sim).
+[mouth.walls]
+size = [182, 124]
+x7_top = 128.0
+x7_bot = 14.0
+y7_in = 1522.0
+y7_out = 1655.0
+x7_top_up = 158.0
+up_scale = 0.61
+up_shift_out = 10
+seed = 21
+[[mouth.walls.pieces]]
+island = "corner_l21"
+box = [227, 1911]
+flip = "none"
+extra_out = 15
+[[mouth.walls.pieces]]
+island = "corner_r20"
+box = [227, 636]
+flip = "vertical"
+extra_out = 0

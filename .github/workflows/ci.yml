@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Engine imports, starters load, catalogue is current
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v10.1.0
+
+      # No PSD template is committed (they are iRacing's), so nothing renders in CI. The gate is:
+      # the engine imports, every starter loads with its PARAMS, car.toml files parse, the manifests
+      # are valid JSON and designs/README.md's generated section matches `paint.py designs --doc`.
+      - name: Engine imports and car.toml files parse
+        run: |
+          uv run scripts/paint.py --help > /dev/null
+          uv run --with pillow,numpy,scipy python -c "
+          import sys, tomllib, pathlib; sys.path.insert(0, 'scripts')
+          from engine import draw, fonts, islands, paths, psd, rig, spec, starters, template, tga
+          from engine.elements import flags, gradient, lockup, plate, shark_mouth, stripes
+          for f in pathlib.Path('cars').glob('*/car.toml'):
+              s = rig.CarSpec.load(f); print(f, s.status, len(s.islands), 'islands', len(s.zones), 'zones')
+          print('engine imports cleanly')
+          "
+
+      - name: Starters load and the catalogue is current
+        run: |
+          IRACING_LIVERY_HOME=/tmp/ws uv run scripts/paint.py designs --json > /tmp/designs.json
+          python -c "import json; d=json.load(open('/tmp/designs.json')); bad=[x for x in d if x['error']]; assert not bad, bad; print(len(d), 'starters')"
+          IRACING_LIVERY_HOME=/tmp/ws uv run scripts/paint.py designs --doc > /tmp/doc.md
+          python - <<'EOF'
+          import re
+          readme = open('designs/README.md', encoding='utf-8').read()
+          m = re.search(r'<!-- generated:start -->\n(.*?)<!-- generated:end -->', readme, re.S)
+          assert m, 'designs/README.md has no generated markers'
+          gen = open('/tmp/doc.md', encoding='utf-8').read().strip()
+          assert m.group(1).strip() == gen, 'designs/README.md is stale: run `paint.py designs --doc` and paste between the markers'
+          print('catalogue is current')
+          EOF
+
+      - name: Validate plugin manifests
+        run: |
+          python -c "import json; json.load(open('.claude-plugin/marketplace.json'))"
+          python -c "import json; json.load(open('.claude-plugin/plugin.json'))"
+          test -f skills/paint/SKILL.md && test -f skills/calibrate/SKILL.md && test -f skills/setup/SKILL.md
+
+      - name: No templates, layers or TGAs tracked
+        run: |
+          ! git ls-files | grep -Ei '\.(psd|psb|tga|mip)$|/layers/|/out/'

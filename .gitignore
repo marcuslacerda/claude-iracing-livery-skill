@@ -1,0 +1,19 @@
+# iRacing's paint templates are copyrighted (download them yourself from iracing.com/painttextures)
+# and everything derived from them stays local: exported layers, renders, TGAs.
+*.psd
+*.psb
+*.tga
+*.mip
+layers/
+out/
+work/
+/templates/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# editors / OS
+.DS_Store
+Thumbs.db

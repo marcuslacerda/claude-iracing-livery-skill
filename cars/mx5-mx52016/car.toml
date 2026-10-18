@@ -1,0 +1,82 @@
+# Mazda MX-5 Cup (2016) - calibration scaffold (fill as the islandtest screenshots come in; see docs/new-car.md)
+
+[car]
+slug = "mx5-mx52016"
+car_path = "mx5 mx52016"
+car_id = 67
+name = "Mazda MX-5 Cup (2016)"
+template_psd = "Mazda MX5 2016.psd"
+min_island_area = 6000
+size = 2048
+status = "islands"
+
+[axes]
+length = [0, 2048]        # TODO: x of the nose and of the tail on the side islands
+centre_y = 1024         # TODO: centreline y of the hood/roof band
+
+# One entry per island found by `prepare` (id = number in islands_map.png, seed = a pixel inside it).
+# Rename them as the screenshots confirm what they are (roof, side_r, side_l, hood, wing ...).
+[islands]
+island_01 = { id = 1, seed = [925, 701] }   # bbox [52, 469, 1838, 892], area 445361
+island_02 = { id = 2, seed = [925, 1788] }   # bbox [52, 1597, 1838, 2021], area 444902
+island_03 = { id = 3, seed = [350, 1244] }   # bbox [8, 877, 726, 1613], area 426852
+island_04 = { id = 4, seed = [191, 282] }   # bbox [0, 2, 1891, 707], area 367276
+island_05 = { id = 5, seed = [1278, 1316] }   # bbox [0, 124, 2039, 2047], area 323542
+island_06 = { id = 6, seed = [1751, 1070] }   # bbox [794, 930, 1912, 1228], area 194090
+island_07 = { id = 7, seed = [1546, 392] }   # bbox [1237, 257, 1856, 538], area 140905
+island_08 = { id = 8, seed = [1877, 1891] }   # bbox [1723, 1736, 2031, 2034], area 74526
+island_09 = { id = 9, seed = [1937, 706] }   # bbox [1836, 449, 2006, 966], area 60631
+island_10 = { id = 10, seed = [1546, 62] }   # bbox [1234, 19, 1859, 109], area 50298
+island_11 = { id = 11, seed = [1541, 1957] }   # bbox [1371, 1878, 1713, 2042], area 45213
+island_12 = { id = 12, seed = [725, 1245] }   # bbox [682, 943, 766, 1548], area 45801
+island_13 = { id = 13, seed = [1545, 235] }   # bbox [1210, 115, 1883, 277], area 32846
+island_14 = { id = 14, seed = [550, 51] }   # bbox [138, 11, 1003, 161], area 29428
+island_15 = { id = 15, seed = [1545, 164] }   # bbox [1293, 135, 1797, 190], area 24175
+island_16 = { id = 16, seed = [1546, 563] }   # bbox [1298, 538, 1794, 588], area 20794
+island_17 = { id = 17, seed = [1019, 1338] }   # bbox [782, 1310, 1258, 1362], area 19672
+island_18 = { id = 18, seed = [1298, 1109] }   # bbox [1154, 1073, 1439, 1147], area 18954
+island_19 = { id = 19, seed = [1019, 1391] }   # bbox [792, 1369, 1248, 1414], area 18381
+island_20 = { id = 20, seed = [1019, 1442] }   # bbox [810, 1421, 1229, 1465], area 16308
+island_21 = { id = 21, seed = [605, 124] }   # bbox [416, 88, 796, 147], area 16346
+island_22 = { id = 22, seed = [2000, 232] }   # bbox [1957, 72, 2032, 396], area 15230
+island_23 = { id = 23, seed = [1917, 293] }   # bbox [1888, 133, 1960, 456], area 15041
+island_24 = { id = 24, seed = [69, 1813] }   # bbox [1, 1708, 283, 2046], area 20985
+island_25 = { id = 25, seed = [163, 1922] }   # bbox [136, 1894, 436, 2018], area 14839
+island_26 = { id = 26, seed = [1019, 1502] }   # bbox [833, 1474, 1206, 1528], area 14131
+island_27 = { id = 27, seed = [1948, 1413] }   # bbox [1872, 1194, 1964, 1749], area 14646
+island_28 = { id = 28, seed = [225, 529] }   # bbox [29, 469, 403, 581], area 18330
+island_29 = { id = 29, seed = [1353, 1159] }   # bbox [1122, 1059, 1586, 1190], area 19646
+island_30 = { id = 30, seed = [1705, 1337] }   # bbox [1636, 1288, 1773, 1378], area 9722
+island_31 = { id = 31, seed = [1372, 1337] }   # bbox [1305, 1288, 1443, 1378], area 9722
+island_32 = { id = 32, seed = [1021, 1612] }   # bbox [773, 1582, 1271, 1630], area 10967
+island_33 = { id = 33, seed = [188, 655] }   # bbox [7, 588, 381, 699], area 12126
+island_34 = { id = 34, seed = [1779, 1554] }   # bbox [1729, 1503, 1831, 1604], area 8448
+island_35 = { id = 35, seed = [1229, 92] }   # bbox [1224, 10, 1868, 116], area 11500
+island_36 = { id = 36, seed = [96, 21] }   # bbox [0, 4, 212, 97], area 11953
+
+[groups]
+# tail = ["..."]
+
+# [[fixups]]
+# targets = "tail"
+# sample = [x, y]
+
+[sides]
+# x_range = [190, 1840]
+# [sides.R]
+# island = "side_r"
+# sill = 633
+# belt = 1149
+# louver = "louver_r"
+# car_down_y = -1
+# [sides.L] ...
+
+[zones]
+# hood = { centre = [x, y], rotate = -90, max = [430, 140] }
+# doors_low_r = { centre = [x, y], rotate = 180, max = [280, 110], car_down_y = -1 }
+
+[pairs]
+# doors_low = ["door_low_r", "door_low_l"]
+
+[preview_crops]
+# hood = [x0, y0, x1, y1]

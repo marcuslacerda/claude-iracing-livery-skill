@@ -1,0 +1,11 @@
+{
+  "name": "iracing-livery",
+  "displayName": "iRacing Livery",
+  "version": "0.1.0",
+  "description": "Design, render and install custom iRacing paints (TGA + spec map) from the official templates by talking to Claude. Calibrated per car, extensible without code changes, runs 100% locally.",
+  "author": { "name": "Marcus Lacerda", "url": "https://lacerdapex.explor8.ai" },
+  "homepage": "https://lacerdapex.explor8.ai/livery",
+  "repository": "https://github.com/marcuslacerda/claude-iracing-livery-skill",
+  "license": "MIT",
+  "keywords": ["iracing", "sim-racing", "livery", "custom-paint", "trading-paints", "motorsport"]
+}

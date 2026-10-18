@@ -1,0 +1,20 @@
+{
+  "name": "lacerdapex-livery",
+  "owner": { "name": "Marcus Lacerda", "url": "https://lacerdapex.explor8.ai" },
+  "description": "iRacing custom livery tools from the @lacerdapex channel.",
+  "plugins": [
+    {
+      "name": "iracing-livery",
+      "source": "./",
+      "displayName": "iRacing Livery",
+      "description": "Design, render and install custom iRacing paints from the official templates by talking to Claude — calibrated per car, extensible locally.",
+      "version": "0.1.0",
+      "author": { "name": "Marcus Lacerda", "url": "https://lacerdapex.explor8.ai" },
+      "homepage": "https://lacerdapex.explor8.ai/livery",
+      "repository": "https://github.com/marcuslacerda/claude-iracing-livery-skill",
+      "license": "MIT",
+      "keywords": ["iracing", "sim-racing", "livery", "custom-paint", "trading-paints", "motorsport"],
+      "category": "productivity"
+    }
+  ]
+}

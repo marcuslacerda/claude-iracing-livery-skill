@@ -82,8 +82,7 @@ def write_map(T: Template, info: dict, out_dir: Path, downscale: int | None = No
     if downscale:
         paths["map_small"] = out_dir / f"islands_map_{downscale}.png"
         m.resize((downscale, downscale), Image.LANCZOS).save(paths["map_small"])
-    paths["json"].write_text(json.dumps(info, indent=1), encoding="utf-8", newline="
-")
+    paths["json"].write_text(json.dumps(info, indent=1), encoding="utf-8", newline="\n")
     return paths
 
 

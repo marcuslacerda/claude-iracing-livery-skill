@@ -12,6 +12,9 @@ Collected in the sim (Paint Shop screenshots and test sessions), car by car. Per
 - **One paint per car at a time**; every paint is regenerable from its design file, so `out/` is a cache.
 - **Geometry in data, drawing in code.** Where things are (`car.toml`) is fixed once per car; what to draw
   (a design) is written per paint. One position fix applies to every paint.
+- **Use the template's own patterns as a ruler.** The PSD's `Car_Patterns` layers (e.g. a centre stripe)
+  show the axis and the texel scale of every island: draw stripes that cross panels on those axes and they
+  meet at the seams on the first try.
 - **Look before you show.** Open the previews yourself and check them against the brief; iterate on
   parameters first, on code second.
 
@@ -44,10 +47,18 @@ Collected in the sim (Paint Shop screenshots and test sessions), car by car. Per
 - **Inverted axes exist** (smaller x = lower on the Cup's front bumper). Write the direction down.
 - **For mirrored pairs of small islands, test all four transforms** before assuming.
 
+## Tooling
+
+- **Screenshots of the sim:** `PrintWindow(hwnd, PW_RENDERFULLCONTENT)` captures the simulator window even
+  when another window covers it; `CopyFromScreen` grabs whatever is on top.
+- **Reloading a paint:** a `Ctrl+R` injected with `keybd_event` did not reload the textures (it opened
+  the camera tool once). Ask the user to press `Ctrl+R`, then capture.
+
 ## The files
 
 - `car_<id>.tga` 24-bit RLE, `car_spec_<id>.tga` 32-bit RLE, 2048×2048, in `Documents\iRacing\paint\<CarPath>\`.
-- Spec map: R metallic, G roughness (white = matte), B clear coat, A specular mask. Stamps (number, iRacing
+- Spec map: R metallic, G roughness (white = matte), B clear coat, A specular mask. Metallic ~120 with
+  roughness ~40 reads as wet metal; emissive-looking neon wants metallic 0 and roughness ~4. Stamps (number, iRacing
   decals) inherit the spec under them. Chrome needs a near-white base.
 - `.mip` is regenerated when the `.tga` is newer; `Ctrl+R` in a session forces it.
 - Only you see a local paint; Trading Paints is how others see it.

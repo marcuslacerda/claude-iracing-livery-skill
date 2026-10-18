@@ -19,7 +19,22 @@ this car. Most of it generalises: see `docs/lessons.md` for the cross-car rules.
 - **Big flat shapes on the doors** survive the door-handle recess; detailed logos and text go below the
   handle line and behind the number (`doors_low`).
 
+- **Centre stripes over the top of the car** (hood → banner → roof → lid → wing → rear bumper, plus the
+  lower front bumper): measure them on the official `car_pattern_002` axis (`[stripe_axes]`) and they line
+  up across every seam, centred or offset.
+- **Pop art cells with an outline on every panel seam**: black lines on the UV island edges become the
+  car's panel lines, so the cells and the panels read as one drawing.
+- **Weathering where a real car gets dirty**: rust and soot concentrated on the gunmetal bumpers, sills,
+  behind the rear wheels and around the hood vents reads as an old ship; spread evenly it reads as noise.
+- **Real metallic** (spec R 120) with roughness 40 gives the "wet metal" look; keep neon and code at
+  metallic 0 and roughness ~4.
+- **Frame the number** with a white circle at (842, h 0.415), r=104: the sim's number fits inside.
+
 ## Doesn't work / watch out
+
+- **Front-fender art above h≈0.55** (x 300–450): another island starts there, art gets cut.
+- **Art over the hood vents** (x 405–505): they are holes on the car; use the free lid x 505–690 and the
+  gap between the vents.
 
 - **Islands lie.** The right side is drawn upside down; the wing endplates sit in the "nose" zone of the UV;
   island 25 appears 4× on the car (hood and engine lid). Any "colour by UV position" needs the per-island

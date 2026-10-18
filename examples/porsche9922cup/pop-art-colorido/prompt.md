@@ -1,14 +1,14 @@
-# pop-britto
+# pop-art-colorido
 
-Prompt para `/iracing-livery:paint` (Porsche 911 GT3 Cup 992.2). Design: `designs/pop_britto.py`.
+Prompt para `/iracing-livery:paint` (Porsche 911 GT3 Cup 992.2). Design: `designs/pop_art_colorido.py`.
 
 ```
-uv run scripts/paint.py render --car porsche9922cup --design pop_britto
+uv run scripts/paint.py render --car porsche9922cup --design pop_art_colorido
 ```
 
 ---
 
-Livery "pop-britto" no Porsche 992.2 Cup, inspirada no estilo pop art de Romero Britto: arte original,
+Livery "pop-art-colorido" no Porsche 992.2 Cup, inspirada no estilo pop art de Romero Britto: arte original,
 sem copiar obras específicas.
 
 Linguagem visual:

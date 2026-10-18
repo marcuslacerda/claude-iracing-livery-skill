@@ -20,7 +20,7 @@ Regenerate with `uv run scripts/paint.py designs --doc` and paste between the ma
 |---|---|---|---|
 | `imperial_cup` | porsche9922cup | Sci-fi armour: warm white panels with seams and bolts, gunmetal bumpers, winged gear insignia; variant=rebel is a rusty scrapyard ship (Porsche Cup). | `variant` = "imperial", `code` = "", `text` = "", `seed` = 3 |
 | `neon_noir` | porsche9922cup | Cyberpunk neon noir: wet metallic graphite, binary code rain, magenta/cyan neon, roof terminal, nerd stickers; variant=day turns the neon off (Porsche Cup). | `variant` = "night", `code` = "", `katakana` = ["\u30cd\u30aa\u30f3\u30ce\u30ef\u30fc\u30eb", "\u30b5\u30a4\u30d0\u30fc\u30ec\u30fc\u30b5\u30fc"], `text` = "", `seed` = 5 |
-| `pop_britto` | porsche9922cup | Pop art in the spirit of Romero Britto: organic cells with thick black outlines, smiling heart, sun and fish (Porsche Cup). | `density` = "large", `seed` = 7, `text` = "" |
+| `pop_art_colorido` | porsche9922cup | Pop art in the spirit of Romero Britto: organic cells with thick black outlines, smiling heart, sun and fish (Porsche Cup). | `density` = "large", `seed` = 7, `text` = "" |
 | `shark_mouth` | any calibrated | A shark mouth on the front bumper (lips, teeth, dark intakes) over a two-tone body, satin finish with glossy logos. | `nose` = "#bc8ae1", `tail` = "#9511dd", `mouth` = "#0c0a10", `lip` = "#6e0c46", `tooth` = "#f0ece4", `hook_tooth` = "#c81e1e", `teeth` = True, `accent` = "#e8a33d", `text` = "", `text_color` = "#0a0e13", `logo_tint` = "", `logo_height` = 400, `satin` = True |
 | `solid` | any calibrated | One flat body colour, accent on mirrors/wing, the logo on the hood and doors, wordmark on the wing. | `body` = "#1a1a1a", `accent` = "#e8a33d", `text` = "", `text_color` = "#ffffff", `logo_tint` = "", `logo_height` = 300, `satin` = False |
 | `sponsor` | any calibrated | The sponsor pack: big logo on the hood and doors, wordmark on the wing and rear quarters, a sill band with text. | `body` = "#ffffff", `accent` = "#9511dd", `logo_tint` = "", `logo_height` = 400, `text` = "", `text_color` = "#0a0e13", `sill_text` = "", `sill_band` = "#0a0e13", `sill_text_color` = "#ffffff", `satin` = False |
@@ -97,9 +97,9 @@ recess), the wordmark on the wing and the rear quarters, and an optional sill ba
 
 <br clear="all">
 
-### `pop_britto` (Porsche Cup)
+### `pop_art_colorido` (Porsche Cup)
 
-<img src="../examples/porsche9922cup/pop-britto/car.png" width="320" align="right" alt="">
+<img src="../examples/porsche9922cup/pop-art-colorido/car.png" width="320" align="right" alt="">
 
 Pop art in the spirit of Romero Britto (original art): the whole car cut into organic cells (a warped
 Voronoi) with thick black outlines, also along every panel seam; each cell a flat saturated colour or a
@@ -109,7 +109,7 @@ wordmark band, a segmented sun on the roof, a segmented fish on a white bubble b
 with straight rounded teeth on the front bumper, a pink dotted wing with the logo plate, yellow dotted
 mirrors/endplates and a clean white circle under the sim's number. Glossy lacquer (roughness 25).
 
-- Example: [`examples/porsche9922cup/pop-britto/`](../examples/porsche9922cup/pop-britto/prompt.md).
+- Example: [`examples/porsche9922cup/pop-art-colorido/`](../examples/porsche9922cup/pop-art-colorido/prompt.md).
 - Try: `--set density=small` (smaller, more chaotic cells) · `--set seed=11` (another cell draw).
 - Limits: Porsche Cup coordinates (hood vents, door, number circle); `[mouth]` for the smile.
 
@@ -165,7 +165,7 @@ rain drops, streaks and scanlines. Body metallic 120 / roughness 40 (uses `Paint
 | `stripes.smooth_path(knots)` / `trio(path, colors, widths, offsets)` / `longitudinal(rig, canvas, bands, fade)` | stripes on both sides | `[sides]` | stripes |
 | `stripes.rear_bumper_wrap(rig, canvas, bands, h_end=0.22, ...)` | continue across the rear bumper | `[bumper_rear]` | stripes |
 | `shark_mouth.draw(rig, paint, dark, lip, tooth, hook_tooth, wall_body, teeth)` | the mouth + intake walls | `[mouth]` (+ `[mouth.walls]`) | shark_mouth |
-| `lockup.horizontal(mark, text, height, ...)` / `stacked(...)` | logo + wordmark sprite | – | pop_britto, neon_noir |
+| `lockup.horizontal(mark, text, height, ...)` / `stacked(...)` | logo + wordmark sprite | – | pop_art_colorido, neon_noir |
 | `plate.rounded_plate(size, radius, color)` / `with_plate(sprite, pad, radius, color)` / `framed` | plates behind sprites | – | – |
 | `flags.draw_flag(code, w, h)` / `row(codes)` | simplified flags (BR MX CO US AR DE IT FR GB ES PT NL JP) | – | – |
 

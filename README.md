@@ -9,7 +9,7 @@ Built from the pipeline behind the [@lacerdapex](https://lacerdapex.explor8.ai) 
 [claude-iracing-coach-skill](https://github.com/marcuslacerda/claude-iracing-coach-skill).
 
 <p>
-<img src="examples/porsche9922cup/pop-britto/car.png" width="30%" alt="pop-britto on the Porsche 992.2 Cup template">
+<img src="examples/porsche9922cup/pop-art-colorido/car.png" width="30%" alt="pop-art-colorido on the Porsche 992.2 Cup template">
 <img src="examples/porsche9922cup/rebel-scrapyard/car.png" width="30%" alt="rebel-scrapyard">
 <img src="examples/porsche9922cup/neon-noir-2049/car.png" width="30%" alt="neon-noir-2049">
 </p>

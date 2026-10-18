@@ -1,6 +1,6 @@
 """Pop art in the spirit of Romero Britto: organic cells with thick black outlines, smiling heart, sun and fish (Porsche Cup).
 
-pop-britto: pop art inspired by Romero Britto (original art, no copied works). The whole car is cut
+pop-art-colorido: pop art inspired by Romero Britto (original art, no copied works). The whole car is cut
 into organic cells with thick black outlines (also along every panel edge); each cell is a flat
 saturated colour or a pattern (diagonal stripes, dots, checks, zigzag, waves). Smiling heart on a white
 balloon with a thick wordmark band (brand.toml text) on the free hood (between the vents and the windshield, tip in
